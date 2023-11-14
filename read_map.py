@@ -1,5 +1,6 @@
 import os
 import readchar
+import random
 
 class Game:
     def __init__(self, filename):
@@ -80,8 +81,13 @@ class Game:
             elif key.lower() == "w" or key == readchar.key.UP:
                 self.place_player(self.px, self.py, 0, -1)
 
+class GameFiles(Game):
+    def __init__(self, filenames):
+        selected_filename = random.choice(filenames)        
+        super().__init__(selected_filename)
+        
 def main():
-    game = Game("map1.txt")
+    game = GameFiles(["map1.txt", "map2.txt"])
     game.run()
 
 if __name__ == "__main__":
